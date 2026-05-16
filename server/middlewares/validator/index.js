@@ -98,7 +98,6 @@ const validatedispatcher  = req => {
     req.check("address", "Address is required").notEmpty()
     req.check("phone", "Phone is required").notEmpty()
 }
-errorTimeHandler();
 
 exports.validateDispatcher = (req,res, next) => {
     validatedispatcher(req)
