@@ -1,6 +1,5 @@
 const ProductBrand = require("../../models/ProductBrand")
 const ProductImages = require("../../models/ProductImages")
-const { errorHandler, errorTimeHandler } = require("./errorHandler");
 const Category = require("../../models/Category")
 const _ = require('lodash')
 const path = require("path");
@@ -20,7 +19,6 @@ exports.validateLead = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
-        errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
@@ -50,7 +48,6 @@ exports.validateSignUp = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
-        errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
@@ -80,7 +77,6 @@ exports.validateSocialLogin = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
-        errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
@@ -117,7 +113,6 @@ exports.validateDispatcher = (req,res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
-        errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
@@ -138,7 +133,6 @@ exports.validateUpdateDispatcher = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
-        errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
@@ -159,7 +153,6 @@ exports.passwordResetValidator = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
-        errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
@@ -177,6 +170,14 @@ exports.validateBusinessInfo = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
+        //make req.files to array of objs
+        // let files = []
+        // if (req.files) for (const file in req.files) {
+        //     files.push(req.files[file][0]);
+        // }
+        // files.forEach(file => {
+        //     fs.unlinkSync(file.path);//and remove file from public/uploads
+        // })
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
@@ -192,7 +193,6 @@ exports.validateAdminBankInfo = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
-        errorHandler();
         // req.file && fs.unlinkSync(req.file.path);//remove file from public/uploads
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
@@ -230,7 +230,6 @@ exports.validateAdminProfile = (req, res, next) => {
     const errors = req.validationErrors();
     // if error show the first one as they happen
     if (errors) {
-        errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
@@ -285,7 +284,6 @@ exports.validateProduct = async (req, res, next) => {
     // if error show the first one as they happen
     if (errors.length) {
         console.log(errors);
-        errorHandler();
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({ error: firstError });
     }
