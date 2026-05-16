@@ -1,14 +1,14 @@
-import {
-  CameraControls,
-  Environment,
-  RenderTexture,
-} from "@react-three/drei";
+// import {
+//   CameraControls,
+//   Environment,
+//   RenderTexture,
+// } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useAtom } from "jotai";
 import { useControls } from "leva";
 import { useEffect, useRef } from "react";
 import { slideAtom } from "./Overlay";
-import { Scene } from "./Scene";
+// import { Scene } from "./Scene";
 
 export const scenes = [
   {
@@ -28,22 +28,22 @@ const CameraHandler = ({ slideDistance }) => {
   const [slide] = useAtom(slideAtom);
 
   useEffect(() => {
-    const resetTimeout = setTimeout(() => {
-      cameraControls.current.setLookAt(
-        slide * (viewport.width + slideDistance),
-        0,
-        5,
-        slide * (viewport.width + slideDistance),
-        0,
-        0
-      );
-    }, 200);
+    // const resetTimeout = setTimeout(() => {
+    //   cameraControls.current.setLookAt(
+    //     slide * (viewport.width + slideDistance),
+    //     0,
+    //     5,
+    //     slide * (viewport.width + slideDistance),
+    //     0,
+    //     0
+    //   );
+    // }, 200);
     return () => clearTimeout(resetTimeout);
   }, [viewport, slide, slideDistance]);
 
   return (
     <CameraControls
-      ref={cameraControls}
+      // ref={cameraControls}
       touches={{
         one: 0,
         two: 0,
@@ -80,7 +80,7 @@ export const Experience = () => {
           <planeGeometry args={[viewport.width, viewport.height]} />
           <meshBasicMaterial toneMapped={false}>
             <RenderTexture attach="map">
-              <Scene {...scene} />
+              {/* <Scene {...scene} /> */}
             </RenderTexture>
           </meshBasicMaterial>
         </mesh>
